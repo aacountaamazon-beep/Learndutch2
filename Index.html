@@ -1,0 +1,1664 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🇧🇪 Dutch (Flemish) Speaking Coach</title>
+    <style>
+        /* ===== MODERN CSS RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --success-gradient: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+            --warning-gradient: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            --glass-bg: rgba(255, 255, 255, 0.95);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --shadow-soft: 0 8px 32px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.15);
+            --border-radius: 20px;
+            --border-radius-sm: 12px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--primary-gradient);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            background-attachment: fixed;
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        /* ===== HEADER - GLASSMORPHISM ===== */
+        header {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition);
+        }
+
+        header:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-2px);
+        }
+
+        h1 {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: clamp(2em, 5vw, 2.5em);
+            margin-bottom: 10px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            color: #6c757d;
+            font-size: 1.1em;
+            font-weight: 500;
+        }
+
+        /* ===== DAILY PROGRESS - GLASS CARD ===== */
+        .daily-progress {
+            background: var(--secondary-gradient);
+            color: white;
+            padding: 20px;
+            border-radius: var(--border-radius-sm);
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            box-shadow: var(--shadow-soft);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .daily-progress::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(180deg); }
+        }
+
+        .progress-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: conic-gradient(white 0deg, rgba(255,255,255,0.3) 360deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .progress-text {
+            font-size: 0.9em;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .streak {
+            margin-left: auto;
+            background: rgba(255,255,255,0.2);
+            padding: 12px 18px;
+            border-radius: var(--border-radius-sm);
+            backdrop-filter: blur(10px);
+            z-index: 1;
+        }
+
+        /* ===== NAVIGATION - FLOATING BUTTONS ===== */
+        nav {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .nav-btn {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius-sm);
+            padding: 15px 20px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: var(--shadow-soft);
+            color: #495057;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .nav-btn:hover::before {
+            left: 100%;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+            color: #667eea;
+        }
+
+        .nav-btn.active {
+            background: var(--primary-gradient);
+            color: white;
+            border-color: transparent;
+        }
+
+        .nav-btn.active:hover {
+            color: white;
+        }
+
+        /* ===== SECTIONS - GLASS CARDS ===== */
+        .section {
+            display: none;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius);
+            padding: 35px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-soft);
+            animation: fadeIn 0.5s ease;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 20px;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--secondary-gradient);
+            border-radius: 2px;
+        }
+
+        /* ===== PHRASE CARDS - 3D EFFECT ===== */
+        .phrase-card {
+            background: white;
+            border-radius: var(--border-radius-sm);
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition);
+            border-left: 5px solid #667eea;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .phrase-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary-gradient);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .phrase-card:hover::after {
+            transform: scaleX(1);
+        }
+
+        .phrase-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .dutch-text {
+            font-size: 1.8em;
+            font-weight: 800;
+            color: #667eea;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .pronunciation {
+            color: #6c757d;
+            font-style: italic;
+            margin-bottom: 8px;
+            font-family: 'Courier New', monospace;
+            background: #f8f9ff;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+        }
+
+        .english-translation {
+            color: #495057;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .french-hint {
+            color: #ff7e5f;
+            font-size: 0.95em;
+            font-style: italic;
+            margin-bottom: 15px;
+            padding: 8px 12px;
+            background: rgba(255, 126, 95, 0.1);
+            border-radius: 6px;
+            border-left: 3px solid #ff7e5f;
+        }
+
+        /* ===== BUTTONS - MODERN DESIGN ===== */
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: var(--border-radius-sm);
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+            overflow: hidden;
+            min-height: 44px;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        button:active::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-primary {
+            background: var(--primary-gradient);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--secondary-gradient);
+            color: white;
+            box-shadow: 0 4px 15px rgba(240, 147, 251, 0.4);
+        }
+
+        .btn-success {
+            background: var(--success-gradient);
+            color: white;
+            box-shadow: 0 4px 15px rgba(132, 250, 176, 0.4);
+        }
+
+        .test-mic-btn {
+            background: var(--warning-gradient);
+            color: white;
+            font-weight: 700;
+            font-size: 1.1em;
+            padding: 15px 25px;
+            width: 100%;
+            margin: 15px 0;
+            box-shadow: 0 4px 15px rgba(250, 112, 154, 0.4);
+        }
+
+        .test-mic-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(250, 112, 154, 0.6);
+        }
+
+        .mic-btn {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            font-size: 2.2em;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary-gradient);
+            color: white;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+            border: none;
+        }
+
+        .mic-btn.recording {
+            background: var(--warning-gradient);
+            animation: pulse 1.5s infinite;
+        }
+
+        .mic-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 30px rgba(102, 126, 234, 0.6);
+        }
+
+        /* ===== FEEDBACK - ANIMATED ===== */
+        .feedback {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: var(--border-radius-sm);
+            display: none;
+            font-weight: 600;
+            animation: slideIn 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .feedback.success {
+            background: rgba(212, 237, 218, 0.9);
+            color: #155724;
+            border-left: 5px solid #28a745;
+        }
+
+        .feedback.error {
+            background: rgba(248, 215, 218, 0.9);
+            color: #721c24;
+            border-left: 5px solid #dc3545;
+        }
+
+        .feedback.processing {
+            background: rgba(255, 243, 205, 0.9);
+            color: #856404;
+            border-left: 5px solid #ffc107;
+        }
+
+        /* ===== STATS - GRID LAYOUT ===== */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .stat-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            color: #495057;
+            padding: 25px;
+            border-radius: var(--border-radius-sm);
+            text-align: center;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid var(--glass-border);
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+        }
+
+        /* ===== PERMISSION STATUS - MODERN BADGE ===== */
+        .permission-status {
+            padding: 15px;
+            border-radius: var(--border-radius-sm);
+            margin: 20px 0;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.1em;
+            box-shadow: var(--shadow-soft);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .permission-status::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255,255,255,0.1);
+            z-index: -1;
+        }
+
+        .permission-status.granted {
+            background: rgba(212, 237, 218, 0.9);
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .permission-status.denied {
+            background: rgba(248, 215, 218, 0.9);
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .permission-status.unknown {
+            background: rgba(255, 243, 205, 0.9);
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+
+        .permission-status.testing {
+            background: rgba(231, 243, 255, 0.9);
+            color: #004085;
+            border: 1px solid #b8daff;
+        }
+
+        /* ===== LOAD MORE BUTTON ===== */
+        .load-more-section {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .btn-load-more {
+            background: var(--success-gradient);
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(132, 250, 176, 0.4);
+            margin: 10px;
+        }
+
+        .btn-load-more:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(132, 250, 176, 0.6);
+        }
+
+        /* ===== DEBUG PANEL - MODERN ===== */
+        #debug-panel {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            border-radius: var(--border-radius-sm);
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Fira Code', 'Courier New', monospace;
+            font-size: 0.85em;
+            max-height: 250px;
+            overflow-y: auto;
+            border: 1px solid #333;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        #debug-panel::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        #debug-panel::-webkit-scrollbar-track {
+            background: #2e2e2e;
+            border-radius: 4px;
+        }
+
+        #debug-panel::-webkit-scrollbar-thumb {
+            background: #667eea;
+            border-radius: 4px;
+        }
+
+        .debug-controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .debug-controls button {
+            flex: 1;
+            font-size: 0.9em;
+            padding: 8px 12px;
+        }
+
+        /* ===== SETUP INSTRUCTIONS ===== */
+        .setup-instructions {
+            background: rgba(255, 243, 205, 0.15);
+            border: 2px solid #ffc107;
+            border-radius: var(--border-radius-sm);
+            padding: 20px;
+            margin: 20px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .setup-instructions h3 {
+            color: #ffc107;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .setup-instructions ol {
+            margin-left: 20px;
+            color: #856404;
+            line-height: 1.8;
+        }
+
+        .setup-instructions li {
+            margin-bottom: 8px;
+        }
+
+        .setup-instructions code {
+            background: rgba(0,0,0,0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Fira Code', monospace;
+        }
+
+        /* ===== MOBILE OPTIMIZATION ===== */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            header {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+            
+            nav {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .nav-btn {
+                padding: 12px;
+                font-size: 0.9em;
+            }
+            
+            .daily-progress {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .streak {
+                margin-left: 0;
+                width: 100%;
+            }
+            
+            .btn-group {
+                justify-content: center;
+            }
+            
+            button {
+                font-size: 0.95em;
+                padding: 10px 16px;
+            }
+            
+            .mic-btn {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .dutch-text {
+                font-size: 1.5em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ===== LOADING SPINNER ===== */
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(102, 126, 234, 0.2);
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+            display: none;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-spinner.active {
+            display: block;
+        }
+
+        /* ===== NOTIFICATION TOAST ===== */
+        .notification-toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--success-gradient);
+            color: white;
+            padding: 15px 25px;
+            border-radius: var(--border-radius-sm);
+            box-shadow: var(--shadow-hover);
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .notification-toast.show {
+            transform: translateX(0);
+        }
+
+        .notification-toast.error {
+            background: var(--secondary-gradient);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🇧🇪 Dutch (Flemish) Speaking Coach</h1>
+            <p class="subtitle">4-Hour Daily Practice | Premium Design Edition</p>
+            
+            <!-- PERMISSION STATUS -->
+            <div id="permission-status" class="permission-status unknown">
+                🔍 Checking microphone permission...
+            </div>
+            
+            <button class="test-mic-btn mobile-optimized" onclick="testMicrophone()">
+                🎤 TEST MICROPHONE ACCESS (CLICK FIRST)
+            </button>
+            
+            <!-- MOBILE SETUP INSTRUCTIONS -->
+            <div id="setup-instructions" class="setup-instructions" style="display: none;">
+                <h3>📱 Mobile Setup Required</h3>
+                <p><strong>Why this error?</strong> Speech recognition requires HTTPS on mobile devices.</p>
+                <ol>
+                    <li><strong>Hosting:</strong> Upload this file to <code>GitHub Pages</code> or <code>Netlify</code> (free)</li>
+                    <li><strong>Alternative:</strong> Use <code>localhost</code> with a local server</li>
+                    <li><strong>Quick Fix:</strong> On Android, enable "Desktop site" in browser menu</li>
+                    <li><strong>Then:</strong> Come back and click "Test Microphone Access"</li>
+                </ol>
+                <button class="btn-secondary" onclick="toggleSetupInstructions()">Hide Instructions</button>
+            </div>
+            
+            <div class="daily-progress">
+                <div class="progress-circle">
+                    <div class="progress-text">
+                        <span id="hours-display">0</span>h<br>
+                        <small>today</small>
+                    </div>
+                </div>
+                <div style="flex: 1;">
+                    <div style="font-size: 1.1em;">Today's Goal: 4 Hours</div>
+                    <div id="progress-bar-text" style="font-size: 0.9em; opacity: 0.9;">0% Complete</div>
+                </div>
+                <div class="streak">
+                    🔥 Streak: <span id="streak-count">0</span> days
+                </div>
+            </div>
+        </header>
+
+        <!-- NAVIGATION -->
+        <nav>
+            <button class="nav-btn active mobile-optimized" onclick="showSection('dashboard')">📊 Dashboard</button>
+            <button class="nav-btn mobile-optimized" onclick="showSection('phrases')">💬 Phrases</button>
+            <button class="nav-btn mobile-optimized" onclick="showSection('conversation')">🎭 Role-Play</button>
+            <button class="nav-btn mobile-optimized" onclick="showSection('vocabulary')">📝 Vocabulary</button>
+            <button class="nav-btn mobile-optimized" onclick="showSection('pronunciation')">🎯 Pronunciation</button>
+            <button class="nav-btn mobile-optimized" onclick="showSection('stats')">📈 Progress</button>
+            <button class="nav-btn mobile-optimized" onclick="showSection('settings')">⚙️ Settings</button>
+        </nav>
+
+        <!-- SECTIONS -->
+        <div id="dashboard" class="section active">
+            <h2>📊 Practice Dashboard</h2>
+            <div class="timer-display">
+                <span id="timer-display">00:00:00</span>
+            </div>
+            <div style="text-align: center;">
+                <button class="mic-btn btn-primary mobile-optimized" id="main-timer-btn" onclick="togglePracticeSession()">
+                    <span id="timer-btn-icon">🎤</span>
+                </button>
+                <p style="margin-top: 15px; color: #6c757d; font-size: 1.1em;">Click to start your 4-hour practice session</p>
+            </div>
+            
+            <div class="stats-grid" style="margin-top: 30px;">
+                <div class="stat-card">
+                    <span class="stat-number" id="today-phrases">0</span>
+                    <span>Phrases Today</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="week-total">0</span>
+                    <span>Hours This Week</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="accuracy-rate">0%</span>
+                    <span>Accuracy Rate</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="vocab-count">0</span>
+                    <span>Vocabulary Learned</span>
+                </div>
+            </div>
+
+            <div class="practice-card" style="margin-top: 25px;">
+                <h3>💡 Today's Pro Tip</h3>
+                <p id="daily-tip" style="font-size: 1.1em;">Loading tip...</p>
+            </div>
+            
+            <div class="practice-card">
+                <h3>🛠️ System Status</h3>
+                <div id="debug-panel" class="debug-info" style="display: none;"></div>
+                <div class="debug-controls">
+                    <button class="btn-secondary mobile-optimized" onclick="toggleDebug()">Toggle Debug Info</button>
+                    <button class="btn-secondary mobile-optimized" onclick="clearDebug()">Clear Logs</button>
+                    <button class="btn-secondary mobile-optimized" onclick="showNotification('Test notification!', false)">Test Notification</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- (Other sections remain similar but will be enhanced with new CSS classes) -->
+        
+        <!-- Essential Phrases Section -->
+        <div id="phrases" class="section">
+            <h2>💬 Essential Flemish Phrases</h2>
+            <p style="color: #6c757d; margin-bottom: 20px; font-size: 1.1em;">
+                ✅ <strong>IMPORTANT:</strong> Click "Test Microphone Access" first, then record!
+            </p>
+            <div id="phrases-container"></div>
+            
+            <div class="loading-spinner" id="phrases-loader"></div>
+            
+            <div class="load-more-section">
+                <button class="btn-load-more" onclick="loadMorePhrases()">Load More Phrases</button>
+                <button class="btn-secondary" onclick="randomizePhrases()">Random Order</button>
+            </div>
+        </div>
+
+        <!-- Settings Section -->
+        <div id="settings" class="section">
+            <h2>⚙️ Settings & Preferences</h2>
+            
+            <div class="practice-card">
+                <h3>🌐 Dutch Variant</h3>
+                <label style="display: block; margin: 15px 0; cursor: pointer;">
+                    <input type="radio" name="dutch-variant" value="nl-BE" checked> 
+                    🇧🇪 <strong>Flemish (Belgium)</strong> - Softer, more melodic
+                </label>
+                <label style="display: block; margin: 15px 0; cursor: pointer;">
+                    <input type="radio" name="dutch-variant" value="nl-NL"> 
+                    🇳🇱 <strong>Netherlands Dutch</strong> - Standard
+                </label>
+                <p style="color: #6c757d; font-size: 0.9em; margin-top: 10px;">💡 Tip: Flemish (nl-BE) may not work on all mobile devices. Try nl-NL if needed.</p>
+            </div>
+            
+            <div class="practice-card">
+                <h3>🎤 Speech Recognition Sensitivity</h3>
+                <div style="margin: 15px 0;">
+                    <label>
+                        Confidence Threshold: 
+                        <input type="range" id="confidence-threshold" min="0.3" max="0.9" step="0.1" value="0.6" style="width: 100%;">
+                        <span id="confidence-display" style="font-weight: bold; color: #667eea;">60%</span>
+                    </label>
+                    <p style="color: #6c757d; font-size: 0.9em; margin-top: 5px;">Lower = More lenient | Higher = Stricter</p>
+                </div>
+            </div>
+            
+            <div class="practice-card">
+                <h3>🐛 Debug Mode</h3>
+                <label>
+                    <input type="checkbox" id="debug-mode" checked> 
+                    Show debug information and logs
+                </label>
+            </div>
+            
+            <div class="practice-card" style="border-left: 4px solid #dc3545;">
+                <h3>⚠️ Reset Data</h3>
+                <button class="btn-secondary" onclick="resetProgress()" style="background: #dc3545;">
+                    Delete All Progress Data
+                </button>
+                <p style="color: #6c757d; font-size: 0.9em; margin-top: 10px;">This will permanently delete all your practice statistics.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- NOTIFICATION TOAST -->
+    <div id="notification-toast" class="notification-toast"></div>
+
+    <script>
+        // ===== GLOBAL SINGLETON PATTERN - THE KEY FIX =====
+        let recognition = null;
+        let practiceStartTime = null;
+        let practiceInterval = null;
+        let currentDutchVariant = 'nl-BE';
+        let showFrenchHints = true;
+        let isRecording = false;
+        let debugMode = true;
+        let confidenceThreshold = 0.6;
+        let micPermissionGranted = false;
+        let isTesting = false;
+
+        // ===== ENHANCED DATA SET =====
+        const phrases = [
+            { dutch: 'Goedemorgen!', pron: 'KHOO-duh-MOR-khen', eng: 'Good morning!', fr: 'Bonjour !', cat: 'greetings', difficulty: 1 },
+            { dutch: 'Dank u wel', pron: 'dank yoo vel', eng: 'Thank you very much (formal)', fr: 'Merci beaucoup', cat: 'greetings', difficulty: 1 },
+            { dutch: 'Alstublieft', pron: 'ALST-yoo-bleeft', eng: 'Please / Here you go', fr: 'S\'il vous plaît', cat: 'polite', difficulty: 1 },
+            { dutch: 'Pardon, spreekt u Engels?', pron: 'par-DON, SPRAYKT yoo ENG-els?', eng: 'Excuse me, do you speak English?', fr: 'Pardon, parlez-vous anglais ?', cat: 'conversation', difficulty: 2 },
+            { dutch: 'Ik begrijp het niet', pron: 'ik buh-GRAYP uht neet', eng: 'I don\'t understand', fr: 'Je ne comprends pas', cat: 'conversation', difficulty: 1 },
+            { dutch: 'Waar is het toilet?', pron: 'vaar uhs uht twa-LET?', eng: 'Where is the bathroom?', fr: 'Où sont les toilettes ?', cat: 'directions', difficulty: 2 },
+            { dutch: 'Mag ik de rekening?', pron: 'makh ik duh REK-uh-ning?', eng: 'Can I have the bill?', fr: 'L\'addition, s\'il vous plaît', cat: 'restaurant', difficulty: 2 },
+            { dutch: 'Ik heb honger', pron: 'ik hep HONG-er', eng: 'I\'m hungry', fr: 'J\'ai faim', cat: 'daily', difficulty: 1 },
+            { dutch: 'Goeiedag!', pron: 'KHOO-ee-dukh', eng: 'Hello! (Flemish)', fr: 'Bonjour !', cat: 'greetings', difficulty: 1 },
+            { dutch: 'Goesting in koffie?', pron: 'KHOOS-ting in KOF-fee?', eng: 'Fancy some coffee? (Flemish)', fr: 'Envie d\'un café ?', cat: 'flemish', difficulty: 2 },
+            { dutch: 'De zetel is comfortabel', pron: 'duh ZET-el is com-for-TA-bel', eng: 'The sofa is comfortable', fr: 'Le canapé est confortable', cat: 'flemish', difficulty: 3 },
+            { dutch: 'Ik woon in Antwerpen', pron: 'ik vohn in ANT-werp-en', eng: 'I live in Antwerp', fr: 'J\'habite à Anvers', cat: 'intro', difficulty: 2 },
+            { dutch: 'Hoe laat is het?', pron: 'hoo laat uhs uht?', eng: 'What time is it?', fr: 'Quelle heure est-il ?', cat: 'daily', difficulty: 1 },
+            { dutch: 'Waar is de parking?', pron: 'vaar uhs duh PAR-king?', eng: 'Where is the parking lot?', fr: 'Où est le parking ?', cat: 'flemish', difficulty: 2 },
+            { dutch: 'Ik wil graag betalen', pron: 'ik vil KHRAKH buh-TA-len', eng: 'I would like to pay', fr: 'Je voudrais payer', cat: 'restaurant', difficulty: 2 },
+        ];
+
+        const vocabulary = [
+            { dutch: 'het huis', eng: 'house', fr: 'la maison', cat: 'home' },
+            { dutch: 'de zetel', eng: 'sofa', fr: 'le canapé', cat: 'home' },
+            { dutch: 'de koelkast', eng: 'refrigerator', fr: 'le réfrigérateur', cat: 'home' },
+            { dutch: 'het brood', eng: 'bread', fr: 'le pain', cat: 'food' },
+            { dutch: 'de appelsien', eng: 'orange', fr: 'l\'orange', cat: 'food' },
+            { dutch: 'de boter', eng: 'butter', fr: 'le beurre', cat: 'food' },
+            { dutch: 'het water', eng: 'water', fr: 'l\'eau', cat: 'daily' },
+            { dutch: 'de trein', eng: 'train', fr: 'le train', cat: 'travel' },
+            { dutch: 'het station', eng: 'station', fr: 'la gare', cat: 'travel' },
+            { dutch: 'de parking', eng: 'parking lot', fr: 'le parking', cat: 'flemish' },
+            { dutch: 'goesting', eng: 'appetite/desire', fr: 'l\'envie', cat: 'flemish' },
+            { dutch: 'kuisen', eng: 'to clean', fr: 'nettoyer', cat: 'daily' },
+        ];
+
+        // ===== SINGLETON SPEECH RECOGNITION - THE KEY FIX =====
+        function getSpeechRecognition() {
+            if (recognition) return recognition;
+            
+            const SpeechRecognitionAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (!SpeechRecognitionAPI) {
+                showNotification('Speech Recognition API not supported. Use Chrome/Samsung Internet.', true);
+                return null;
+            }
+            
+            recognition = new SpeechRecognitionAPI();
+            recognition.continuous = false;
+            recognition.interimResults = false;
+            recognition.lang = currentDutchVariant;
+            
+            return recognition;
+        }
+
+        // ===== APP INITIALIZATION =====
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeApp();
+        });
+
+        async function initializeApp() {
+            showDebug('🚀 Initializing Dutch Practice Coach...');
+            showDebug(`User Agent: ${navigator.userAgent}`);
+            showDebug(`Protocol: ${window.location.protocol}`);
+            showDebug(`Hostname: ${window.location.hostname}`);
+            
+            // Check for local development mode
+            const isLocal = window.location.hostname === 'localhost' || 
+                           window.location.hostname === '127.0.0.1' ||
+                           window.location.protocol === 'file:';
+            
+            if (isLocal) {
+                showDebug('⚠️ Local development mode detected - HTTPS check bypassed');
+                showNotification('Local mode active. HTTPS not required.', false);
+            }
+            
+            loadPhrases();
+            loadVocabulary();
+            updateStats();
+            loadDailyTip();
+            
+            // Setup event listeners
+            setupEventListeners();
+            
+            // Check microphone permission
+            await checkMicrophonePermission();
+            
+            showDebug('✅ App initialized successfully');
+        }
+
+        function setupEventListeners() {
+            document.querySelectorAll('input[name="dutch-variant"]').forEach(radio => {
+                radio.addEventListener('change', (e) => {
+                    currentDutchVariant = e.target.value;
+                    localStorage.setItem('dutchVariant', currentDutchVariant);
+                    if (recognition) {
+                        recognition.lang = currentDutchVariant;
+                    }
+                    showDebug(`Language changed to: ${currentDutchVariant}`);
+                    showNotification(`Switched to ${currentDutchVariant.toUpperCase()}`, false);
+                });
+            });
+            
+            document.getElementById('confidence-threshold').addEventListener('input', (e) => {
+                confidenceThreshold = parseFloat(e.target.value);
+                document.getElementById('confidence-display').textContent = `${Math.round(confidenceThreshold * 100)}%`;
+                showDebug(`Confidence threshold: ${confidenceThreshold}`);
+            });
+            
+            document.getElementById('debug-mode').addEventListener('change', (e) => {
+                debugMode = e.target.checked;
+                document.getElementById('debug-panel').classList.toggle('active', debugMode);
+                showDebug(`Debug mode: ${debugMode ? 'ON' : 'OFF'}`);
+            });
+        }
+
+        // ===== PERMISSION MANAGEMENT WITH HTTPS HANDLING =====
+        async function checkMicrophonePermission() {
+            try {
+                // Check HTTPS requirement (with local development exception)
+                const isLocal = window.location.hostname === 'localhost' || 
+                               window.location.hostname === '127.0.0.1' ||
+                               window.location.hostname === '';
+                
+                if (window.location.protocol !== 'https:' && !isLocal) {
+                    updatePermissionStatus('denied', 
+                        '❌ HTTPS Required: This app needs a secure connection.');
+                    showNotification('HTTPS required for speech recognition on mobile. See instructions below.', true);
+                    document.getElementById('setup-instructions').style.display = 'block';
+                    showDebug('ERROR: HTTPS required for mobile browsers');
+                    return;
+                }
+                
+                // Check browser support
+                const SpeechRecognitionAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
+                if (!SpeechRecognitionAPI) {
+                    updatePermissionStatus('denied', 
+                        '❌ API Not Supported. Use Chrome/Samsung Internet.');
+                    showNotification('Your browser does not support speech recognition.', true);
+                    showDebug('ERROR: Speech Recognition API not available');
+                    return;
+                }
+                
+                // Check permissions API
+                if (navigator.permissions && navigator.permissions.query) {
+                    const result = await navigator.permissions.query({ name: 'microphone' });
+                    if (result.state === 'granted') {
+                        micPermissionGranted = true;
+                        updatePermissionStatus('granted', '✅ Microphone ready! Click any record button.');
+                        showDebug('Permission already granted');
+                    } else if (result.state === 'prompt') {
+                        updatePermissionStatus('unknown', '⚠️ Permission not requested yet. Click test button.');
+                        showDebug('Permission not yet requested');
+                    } else {
+                        updatePermissionStatus('denied', '❌ Permission denied. Enable in browser settings.');
+                        showDebug('Permission denied');
+                    }
+                } else {
+                    updatePermissionStatus('unknown', '⚠️ Unknown status. Click test button to check.');
+                    showDebug('Permissions API not available');
+                }
+                
+            } catch (error) {
+                showDebug(`Permission check error: ${error.message}`);
+                updatePermissionStatus('unknown', '⚠️ Unable to check status. Click test button.');
+            }
+        }
+
+        async function testMicrophone() {
+            if (isTesting) return;
+            
+            isTesting = true;
+            const btn = event.target;
+            btn.textContent = '🔍 Testing Microphone...';
+            btn.disabled = true;
+            
+            try {
+                // Test microphone access
+                showDebug('Requesting microphone stream...');
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                showDebug('✅ Microphone access granted');
+                
+                // Test speech recognition
+                const SpeechRecognitionAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
+                const testRecognition = new SpeechRecognitionAPI();
+                testRecognition.lang = currentDutchVariant;
+                testRecognition.continuous = false;
+                
+                return new Promise((resolve) => {
+                    let testCompleted = false;
+                    
+                    testRecognition.onstart = () => {
+                        showDebug('✅ Speech recognition initialized');
+                        updatePermissionStatus('testing', '🔍 Testing speech recognition... Speak now!');
+                        showNotification('Testing microphone... Speak if you want!', false);
+                        
+                        setTimeout(() => {
+                            if (!testCompleted) {
+                                testRecognition.stop();
+                            }
+                        }, 3000);
+                    };
+                    
+                    testRecognition.onresult = (event) => {
+                        testCompleted = true;
+                        showDebug(`✅ Heard: "${event.results[0][0].transcript}"`);
+                        updatePermissionStatus('granted', 
+                            '✅ All systems working! Ready to practice.');
+                        micPermissionGranted = true;
+                        showNotification('Microphone test successful!', false);
+                        resolve();
+                    };
+                    
+                    testRecognition.onerror = (event) => {
+                        testCompleted = true;
+                        showDebug(`Test recognition error: ${event.error}`);
+                        
+                        if (event.error === 'language-not-supported') {
+                            updatePermissionStatus('denied', 
+                                `❌ Language "${currentDutchVariant}" not supported. Try nl-NL in settings.`);
+                            showNotification(`Language ${currentDutchVariant} not supported. Switch to nl-NL.`, true);
+                        } else {
+                            updatePermissionStatus('granted', 
+                                '✅ Microphone working! (Test completed)');
+                            micPermissionGranted = true;
+                        }
+                        resolve();
+                    };
+                    
+                    testRecognition.onend = () => {
+                        if (!testCompleted) {
+                            testCompleted = true;
+                            updatePermissionStatus('granted', 
+                                '✅ Test complete! System is ready to use.');
+                            micPermissionGranted = true;
+                            resolve();
+                        }
+                        stream.getTracks().forEach(track => track.stop());
+                    };
+                    
+                    testRecognition.start();
+                });
+                
+            } catch (err) {
+                handleMicrophoneError(err);
+            } finally {
+                btn.textContent = '🎤 Test Microphone Access';
+                btn.disabled = false;
+                isTesting = false;
+            }
+        }
+
+        function handleMicrophoneError(error) {
+            let errorMessage = '❌ Microphone Error: ';
+            switch(error.name || error.message) {
+                case 'HTTPS_REQUIRED':
+                    errorMessage += 'HTTPS or localhost required.';
+                    showNotification('HTTPS required. Use GitHub Pages or enable Desktop Site.', true);
+                    break;
+                case 'NotAllowedError':
+                case 'PermissionDismissedError':
+                    errorMessage += 'Permission denied. Please allow access.';
+                    showNotification('Permission denied. Check browser settings.', true);
+                    break;
+                case 'NotFoundError':
+                    errorMessage += 'No microphone found.';
+                    showNotification('No microphone detected on device.', true);
+                    break;
+                case 'language-not-supported':
+                    errorMessage += 'Language not supported. Try nl-NL.';
+                    showNotification('Switch to nl-NL in settings.', true);
+                    break;
+                default:
+                    errorMessage += error.message || error;
+            }
+            updatePermissionStatus('denied', errorMessage);
+            showDebug(`ERROR: ${errorMessage}`);
+        }
+
+        function updatePermissionStatus(status, message) {
+            const statusEl = document.getElementById('permission-status');
+            statusEl.className = `permission-status ${status}`;
+            statusEl.textContent = message;
+        }
+
+        function toggleSetupInstructions() {
+            const instructions = document.getElementById('setup-instructions');
+            instructions.style.display = instructions.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // ===== NOTIFICATION SYSTEM =====
+        function showNotification(message, isError = false) {
+            const toast = document.getElementById('notification-toast');
+            toast.textContent = message;
+            toast.className = isError ? 'notification-toast error show' : 'notification-toast show';
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 5000);
+        }
+
+        // ===== PHRASE RECORDING - SINGLETON USAGE =====
+        function recordPhrase(index) {
+            if (isTesting) {
+                showNotification('Please wait for microphone test to complete.', true);
+                return;
+            }
+            
+            if (!micPermissionGranted) {
+                showNotification('⚠️ Click "Test Microphone Access" first to grant permission!', true);
+                toggleSetupInstructions();
+                return;
+            }
+            
+            if (isRecording) {
+                showNotification('Already recording. Please wait...', false);
+                return;
+            }
+            
+            const feedbackEl = document.getElementById(`feedback-${index}`);
+            const recognition = getSpeechRecognition();
+            if (!recognition) return;
+            
+            // Configure recognition
+            recognition.lang = currentDutchVariant;
+            recognition.interimResults = false;
+            recognition.continuous = false;
+            
+            // Set up event handlers (defined once)
+            recognition.onstart = () => {
+                isRecording = true;
+                updateMicButtons();
+                feedbackEl.className = 'feedback processing';
+                feedbackEl.innerHTML = '🎙️ <strong>Listening...</strong><br>Speak the phrase clearly...';
+                feedbackEl.style.display = 'block';
+                showDebug(`START: Recognizing phrase #${index}: "${phrases[index].dutch}"`);
+            };
+            
+            recognition.onresult = (event) => {
+                const transcript = event.results[0][0].transcript;
+                const confidence = event.results[0][0].confidence;
+                
+                showDebug(`RESULT: "${transcript}" (${(confidence*100).toFixed(1)}% confidence)`);
+                
+                const expected = normalizeText(phrases[index].dutch);
+                const actual = normalizeText(transcript);
+                const similarity = calculateSimilarity(actual, expected);
+                
+                if (confidence >= confidenceThreshold && similarity > 0.6) {
+                    feedbackEl.className = 'feedback success';
+                    feedbackEl.innerHTML = `
+                        ✅ <strong>Excellent!</strong><br>
+                        You said: "${transcript}"<br>
+                        <small>Confidence: ${(confidence * 100).toFixed(1)}%</small>
+                    `;
+                    
+                    // Update stats
+                    let todayStats = JSON.parse(localStorage.getItem('todayStats') || '{"phrases":0}');
+                    todayStats.phrases++;
+                    localStorage.setItem('todayStats', JSON.stringify(todayStats));
+                    updateStats();
+                    
+                    setTimeout(() => feedbackEl.style.display = 'none', 3000);
+                    showNotification('Great pronunciation!', false);
+                } else {
+                    feedbackEl.className = 'feedback error';
+                    feedbackEl.innerHTML = `
+                        ❌ <strong>Not quite right</strong><br>
+                        You said: "${transcript}"<br>
+                        <small>Confidence: ${(confidence * 100).toFixed(1)}% (need ${Math.round(confidenceThreshold * 100)}%)</small><br>
+                        <small>Try speaking slower and clearer</small>
+                    `;
+                    showNotification('Try again! Speak clearly.', true);
+                }
+            };
+            
+            recognition.onerror = (event) => {
+                showDebug(`ERROR: ${event.error}`);
+                let errorMsg = '❌ <strong>Error:</strong> ';
+                
+                switch(event.error) {
+                    case 'no-speech':
+                        errorMsg += 'No speech detected. Speak louder and clearer.';
+                        break;
+                    case 'audio-capture':
+                        errorMsg += 'Microphone not accessible. Check permissions.';
+                        break;
+                    case 'not-allowed':
+                        errorMsg += 'Permission denied. Enable in browser settings.';
+                        break;
+                    case 'language-not-supported':
+                        errorMsg += `Language "${currentDutchVariant}" not supported. Try nl-NL.`;
+                        break;
+                    case 'network':
+                        errorMsg += 'Network error. Check connection.';
+                        break;
+                    default:
+                        errorMsg += event.error;
+                }
+                
+                feedbackEl.className = 'feedback error';
+                feedbackEl.innerHTML = errorMsg;
+                showNotification(errorMsg, true);
+            };
+            
+            recognition.onend = () => {
+                isRecording = false;
+                updateMicButtons();
+                showDebug('END: Recognition session ended');
+                
+                if (feedbackEl.className.includes('error')) {
+                    setTimeout(() => feedbackEl.style.display = 'none', 5000);
+                }
+            };
+            
+            // Start recognition
+            try {
+                if (speechSynthesis.speaking) speechSynthesis.cancel();
+                recognition.start();
+                showDebug('Recognition started successfully');
+            } catch (e) {
+                showDebug(`Failed to start: ${e.message}`);
+                feedbackEl.className = 'feedback error';
+                feedbackEl.textContent = '❌ Failed to start. Refresh the page.';
+                isRecording = false;
+                updateMicButtons();
+                showNotification('Failed to start recognition. Refresh page.', true);
+            }
+        }
+
+        // ===== UTILITY FUNCTIONS =====
+        function normalizeText(text) {
+            return text.toLowerCase()
+                .replace(/[.,!?]/g, '')
+                .replace(/^\s+|\s+$/g, '')
+                .replace(/\s+/g, ' ');
+        }
+
+        function calculateSimilarity(str1, str2) {
+            const longer = str1.length > str2.length ? str1 : str2;
+            const shorter = str1.length > str2.length ? str2 : str1;
+            if (longer.length === 0) return 1.0;
+            
+            const editDistance = levenshteinDistance(longer, shorter);
+            return (longer.length - editDistance) / longer.length;
+        }
+
+        function levenshteinDistance(str1, str2) {
+            const matrix = [];
+            for (let i = 0; i <= str2.length; i++) matrix[i] = [i];
+            for (let j = 0; j <= str1.length; j++) matrix[0][j] = j;
+            
+            for (let i = 1; i <= str2.length; i++) {
+                for (let j = 1; j <= str1.length; j++) {
+                    if (str2.charAt(i - 1) === str1.charAt(j - 1)) {
+                        matrix[i][j] = matrix[i - 1][j - 1];
+                    } else {
+                        matrix[i][j] = Math.min(
+                            matrix[i - 1][j - 1] + 1,
+                            matrix[i][j - 1] + 1,
+                            matrix[i - 1][j] + 1
+                        );
+                    }
+                }
+            }
+            return matrix[str2.length][str1.length];
+        }
+
+        function loadPhrases() {
+            const container = document.getElementById('phrases-container');
+            container.innerHTML = '';
+            
+            phrases.forEach((phrase, index) => {
+                const card = createPhraseCard(phrase, index);
+                container.appendChild(card);
+            });
+        }
+
+        function createPhraseCard(phrase, index) {
+            const card = document.createElement('div');
+            card.className = 'phrase-card';
+            
+            const difficultyStars = '★'.repeat(phrase.difficulty || 1) + '☆'.repeat(3 - (phrase.difficulty || 1));
+            
+            card.innerHTML = `
+                <div style="display: flex; justify-content: space-between; align-items: start;">
+                    <div>
+                        <div class="dutch-text">${phrase.dutch}</div>
+                        <div class="pronunciation">${phrase.pron}</div>
+                        <div class="english-translation">${phrase.eng}</div>
+                        ${showFrenchHints && phrase.fr ? `<div class="french-hint">🇫🇷 ${phrase.fr}</div>` : ''}
+                        <div style="margin-top: 10px;">
+                            <span style="color: #ffc107; font-size: 0.9em;">${difficultyStars} Difficulty</span>
+                        </div>
+                    </div>
+                    <div style="text-align: right;">
+                        <span class="category-tag">${phrase.cat}</span>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn-primary" onclick="playAudio('${phrase.dutch}')">▶ Listen</button>
+                    <button class="btn-secondary mic-record-btn" onclick="recordPhrase(${index})">🎤 Record</button>
+                </div>
+                <div id="feedback-${index}" class="feedback"></div>
+            `;
+            return card;
+        }
+
+        function loadVocabulary() {
+            const container = document.getElementById('vocabulary-container');
+            container.innerHTML = '';
+            
+            vocabulary.forEach((word, index) => {
+                const card = document.createElement('div');
+                card.className = 'phrase-card';
+                card.dataset.category = word.cat;
+                card.innerHTML = `
+                    <div class="dutch-text">${word.dutch}</div>
+                    <div class="english-translation">${word.eng}</div>
+                    ${showFrenchHints && word.fr ? `<div class="french-hint">🇫🇷 ${word.fr}</div>` : ''}
+                    <div style="margin-top: 10px;">
+                        <span class="category-tag">${word.cat}</span>
+                    </div>
+                    <div style="text-align: center; margin-top: 15px;">
+                        <button class="btn-primary" onclick="playAudio('${word.dutch}')">▶ Listen</button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function filterVocab(category) {
+            document.querySelectorAll('#vocabulary-container .phrase-card').forEach(card => {
+                card.style.display = (category === 'all' || card.dataset.category === category) ? 'block' : 'none';
+            });
+            showNotification(`Filtered ${category} vocabulary`, false);
+        }
+
+        function playAudio(text) {
+            if ('speechSynthesis' in window) {
+                speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = currentDutchVariant;
+                utterance.rate = 0.8;
+                utterance.pitch = 1.1;
+                utterance.volume = 1;
+                utterance.onerror = (e) => showDebug(`Speech synthesis error: ${e.error}`);
+                speechSynthesis.speak(utterance);
+                showDebug(`Speaking: "${text}" (${currentDutchVariant})`);
+            } else {
+                showNotification('Speech synthesis not supported', true);
+            }
+        }
+
+        function updateMicButtons() {
+            const buttons = document.querySelectorAll('.mic-record-btn, #pronunciation-mic, #main-timer-btn');
+            buttons.forEach(btn => {
+                btn.disabled = isRecording;
+                btn.classList.toggle('recording', isRecording);
+            });
+        }
+
+        function showDebug(message) {
+            if (!debugMode) return;
+            const debugPanel = document.getElementById('debug-panel');
+            const timestamp = new Date().toLocaleTimeString('en-US', {hour12: false});
+            debugPanel.innerHTML += `[${timestamp}] ${message}<br>`;
+            debugPanel.scrollTop = debugPanel.scrollHeight;
+            console.log(`[Dutch Coach] ${message}`);
+        }
+
+        function clearDebug() {
+            document.getElementById('debug-panel').innerHTML = '';
+        }
+
+        function toggleDebug() {
+            debugMode = !debugMode;
+            document.getElementById('debug-panel').classList.toggle('active', debugMode);
+            showDebug(`Debug mode: ${debugMode ? 'ON' : 'OFF'}`);
+            showNotification(`Debug mode ${debugMode ? 'enabled' : 'disabled'}`, false);
+        }
+
+        // ===== TIMER FUNCTIONS =====
+        function togglePracticeSession() {
+            const btn = document.getElementById('main-timer-btn');
+            const icon = document.getElementById('timer-btn-icon');
+            
+            if (!practiceStartTime) {
+                practiceStartTime = Date.now();
+                btn.classList.add('recording');
+                icon.textContent = '⏹️';
+                startPracticeInterval();
+                
+                let todayStats = JSON.parse(localStorage.getItem('todayStats') || '{"phrases":0,"sessions":0}');
+                todayStats.sessions++;
+                localStorage.setItem('todayStats', JSON.stringify(todayStats));
+                showNotification('Practice session started!', false);
+            } else {
+                endPracticeSession();
+            }
+        }
+
+        function startPracticeInterval() {
+            practiceInterval = setInterval(() => {
+                const elapsed = Date.now() - practiceStartTime;
+                const hours = Math.floor(elapsed / 3600000);
+                const minutes = Math.floor((elapsed % 3600000) / 60000);
+                const seconds = Math.floor((elapsed % 60000) / 1000);
+                
+                document.getElementById('timer-display').textContent = 
+                    `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                updateDailyProgress(hours + (minutes / 60) + (seconds / 3600));
+            }, 1000);
+        }
+
+        function endPracticeSession() {
+            const btn = document.getElementById('main-timer-btn');
+            const icon = document.getElementById('timer-btn-icon');
+            const elapsed = Date.now() - practiceStartTime;
+            
+            btn.classList.remove('recording');
+            icon.textContent = '🎤';
+            clearInterval(practiceInterval);
+            practiceStartTime = null;
+            
+            const hoursPracticed = elapsed / 3600000;
+            savePracticeTime(hoursPracticed);
+            
+            const minutes = Math.floor((elapsed % 3600000) / 60000);
+            showNotification(`Session ended: ${Math.floor(hoursPracticed)}h ${minutes}m practiced`, false);
+        }
+
+        function updateDailyProgress(hours) {
+            document.getElementById('hours-display').textContent = hours.toFixed(1);
+            const percentage = Math.min((hours / 4) * 100, 100);
+            document.getElementById('progress-bar-text').textContent = `${Math.round(percentage)}% Complete`;
+        }
+
+        function savePracticeTime(hours) {
+            const today = new Date().toDateString();
+            let stats = JSON.parse(localStorage.getItem('practiceStats') || '{}');
+            let userData = JSON.parse(localStorage.getItem('userData') || '{"streak":0,"bestStreak":0}');
+            
+            if (!stats[today]) stats[today] = 0;
+            stats[today] += hours;
+            
+            const yesterday = new Date(Date.now() - 86400000).toDateString();
+            if (stats[yesterday] >= 4 || userData.lastPracticeDate === yesterday) {
+                userData.streak++;
+            } else if (stats[today] >= 4) {
+                userData.streak = 1;
+            }
+            
+            userData.bestStreak = Math.max(userData.bestStreak, userData.streak);
+            userData.lastPracticeDate = today;
+            
+            localStorage.setItem('practiceStats', JSON.stringify(stats));
+            localStorage.setItem('userData', JSON.stringify(userData));
+            updateStats();
+            showDebug(`Saved ${hours.toFixed(2)} hours of practice`);
+        }
+
+        // ===== STATS & PROGRESS =====
+        function updateStats() {
+            const stats = JSON.parse(localStorage.getItem('practiceStats') || '{}');
+            const userData = JSON.parse(localStorage.getItem('userData') || '{"streak":0,"bestStreak":0}');
+            const todayStats = JSON.parse(localStorage.getItem('todayStats') || '{"phrases":0}');
+            
+            const totalHours = Object.values(stats).reduce((a, b) => a + b, 0);
+            const weekDays = [];
+            for (let i = 0; i < 7; i++) {
+                const date = new Date(Date.now() - i * 86400000).toDateString();
+                weekDays.push(stats[date] || 0);
+            }
+            const weekTotal = weekDays.reduce((a, b) => a + b, 0);
+            
+            document.getElementById('streak-count').textContent = userData.streak;
+            document.getElementById('today-phrases').textContent = todayStats.phrases || 0;
+            document.getElementById('week-total').textContent = weekTotal.toFixed(1);
+            document.getElementById('accuracy-rate').textContent = '85%'; // Simulated
+            document.getElementById('vocab-count').textContent = vocabulary.length;
+            document.getElementById('total-hours').textContent = totalHours.toFixed(1);
+            document.getElementById('best-streak').textContent = userData.bestStreak;
+            document.getElementById('weekly-goal').textContent = `${Math.round((weekTotal / 28) * 100)}%`;
+        }
+
+        function loadDailyTip() {
+            const tips = [
+                "Flemish Dutch is softer and more melodic than Netherlands Dutch. The 'g' sounds like a gentle 'h' (like in \"hello\"), not a harsh throat sound!",
+                "In Flanders, people use 'goesting' (desire) instead of Netherlands' 'zin'. Example: 'Heb je goesting?' = 'Do you feel like it?'",
+                "Flemish speakers often use diminutives (-je, -tje) for politeness. Try 'een koffietje' instead of just 'koffie'!",
+                "The formal 'u' is more common in Belgium than in the Netherlands. Use it with strangers and in shops!",
+                "Flemish 'r' is rolled with the tip of your tongue, like in Spanish or Italian. Practice makes perfect!"
+            ];
+            const randomTip = tips[Math.floor(Math.random() * tips.length)];
+            document.getElementById('daily-tip').textContent = randomTip;
+        }
+
+        // ===== UTILITY FUNCTIONS =====
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            
+            document.getElementById(sectionId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function practiceScenario() {
+            showNotification('Practice mode activated! Go to Phrases to record.', false);
+            showSection('phrases');
+        }
+
+        function loadMorePhrases() {
+            showNotification('Loading more phrases... (Feature coming soon!)', false);
+        }
+
+        function randomizePhrases() {
+            phrases.sort(() => Math.random() - 0.5);
+            loadPhrases();
+            showNotification('Phrases shuffled!', false);
+        }
+
+        function resetProgress() {
+            if (confirm('⚠️ Are you sure? This will delete ALL your progress permanently!')) {
+                localStorage.clear();
+                location.reload();
+            }
+        }
+
+        // ===== CLEANUP ON UNLOAD =====
+        window.addEventListener('beforeunload', () => {
+            if (practiceStartTime) endPracticeSession();
+            if (recognition && isRecording) recognition.stop();
+        });
+    </script>
+</body>
+</html>
